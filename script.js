@@ -64,14 +64,38 @@ function startFlowers() {
 const audio = document.querySelector('audio');
 const hint = document.getElementById("tapHint");
 const ground = document.querySelector('.ground');
-audio.pause();
+
+// Pausar el audio inicialmente
+if (audio) {
+  audio.pause();
+  audio.load(); // Importante para móviles
+}
 
 function start() {
-  audio.volume = 0.6;
-  audio.play().catch(() => { });
+  if (audio) {
+    audio.volume = 0.6;
+
+    // Intentar reproducir con mejor manejo de errores
+    const playPromise = audio.play();
+
+    if (playPromise !== undefined) {
+      playPromise
+        .then(() => {
+          console.log('Audio reproduciendo correctamente');
+        })
+        .catch(error => {
+          console.log('Error al reproducir audio:', error);
+          // Intentar de nuevo después de un momento
+          setTimeout(() => {
+            audio.play().catch(e => console.log('Segundo intento fallido:', e));
+          }, 100);
+        });
+    }
+  }
+
   hint.remove();
 
-  ground.style.transform = 'scale(1.5)'; // Vista más lejana (antes era 2)
+  ground.style.transform = 'scale(1.5)';
   ground.style.animationPlayState = 'running';
 
   startFlowers();
@@ -80,7 +104,14 @@ function start() {
 }
 
 document.addEventListener('click', start);
-document.addEventListener("touchstart", start);
+document.addEventListener('touchstart', start, { passive: false });
+
+// Segundo intento de activación de audio si el primero falla
+document.addEventListener('touchend', function audioRetry(e) {
+  if (audio && audio.paused && !hint) {
+    audio.play().catch(err => console.log('Retry failed:', err));
+  }
+}, { once: true, passive: false });
 
 // Animación extra del logo después de 10 segundos
 document.addEventListener('DOMContentLoaded', function () {
