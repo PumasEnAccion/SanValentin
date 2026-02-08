@@ -67,11 +67,11 @@ const ground = document.querySelector('.ground');
 audio.pause();
 
 function start() {
-  audio.volume = 0.6; // opcional
+  audio.volume = 0.6;
   audio.play().catch(() => { });
   hint.remove();
 
-  ground.style.transform = 'scale(2)';
+  ground.style.transform = 'scale(1.5)'; // Vista más lejana (antes era 2)
   ground.style.animationPlayState = 'running';
 
   startFlowers();
@@ -82,16 +82,31 @@ function start() {
 document.addEventListener('click', start);
 document.addEventListener("touchstart", start);
 
-// Script opcional para añadir animación extra después de 10 segundos
-// Agrega esto al final de tu script.js o crea un nuevo archivo
-
+// Animación extra del logo después de 10 segundos
 document.addEventListener('DOMContentLoaded', function () {
   const logoContainer = document.querySelector('.logo-container');
 
-  // Añadir clase de super atención después de 10 segundos
   setTimeout(() => {
     if (logoContainer) {
       logoContainer.classList.add('super-attention');
     }
   }, 10000);
 });
+
+// Fix para altura dinámica del viewport en móviles
+function updateViewportHeight() {
+  const vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+}
+
+// Actualizar altura al cargar, redimensionar o rotar
+updateViewportHeight();
+window.addEventListener('resize', updateViewportHeight);
+window.addEventListener('orientationchange', updateViewportHeight);
+
+// Prevenir scroll accidental en móviles durante la interacción con tapHint
+if (hint) {
+  hint.addEventListener('touchmove', function (e) {
+    e.preventDefault();
+  }, { passive: false });
+}
