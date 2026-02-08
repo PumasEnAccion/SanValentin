@@ -100,16 +100,11 @@ body {
     overflow: visible;
     position: relative;
     transform-origin: center bottom;
-    -webkit-transform-origin: center bottom;
     transform: scale(0);
-    -webkit-transform: scale(0);
     animation: shrink 1.5s ease-in forwards 4s;
-    -webkit-animation: shrink 1.5s ease-in forwards 4s;
     animation-play-state: paused;
-    -webkit-animation-play-state: paused;
     will-change: transform;
     backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
     margin-bottom: 30vh;
 }
 
@@ -147,19 +142,16 @@ body {
     aspect-ratio: 16;
     container-type: inline-size;
     filter: drop-shadow(0 0 2vmin #ff69b4cc);
-    -webkit-filter: drop-shadow(0 0 2vmin #ff69b4cc);
     justify-items: center;
     align-content: center;
     transform-origin: bottom center;
-    -webkit-transform-origin: bottom center;
 }
 
 /* Posiciones mejoradas para móviles */
 .flower-container:first-child {
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -10%);
 }
 
 .flower-container:nth-child(2) {
@@ -333,26 +325,22 @@ body {
     bottom: 100%;
     left: 50%;
     transform: translate(-50%, 50%);
-    -webkit-transform: translate(-50%, 50%);
 }
 
 .flower-circle {
     width: 30cqi;
     aspect-ratio: 1.5;
     border-radius: 50%;
-    background-color: #ffd4e5;
+    background-color: #ffd4d4;
     box-shadow: inset 0px -3cqi 3cqi #ff69b433;
     position: absolute;
     scale: 0;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    -webkit-transform: translate(-50%, -50%);
     border-radius: 100% 100% 100% 100%/90% 90% 90% 90%;
-    filter: drop-shadow(0 0 15cqi #ff85a1);
-    -webkit-filter: drop-shadow(0 0 15cqi #ff85a1);
+    filter: drop-shadow(0 0 15cqi #edff85);
     transform-origin: top left;
-    -webkit-transform-origin: top left;
 }
 
 .flower-petal {
@@ -439,13 +427,11 @@ body {
 .flower-light:nth-child(odd) {
     background-color: #ffb3d9;
     filter: blur(2cqi) drop-shadow(0 0 5cqi #ff85a1);
-    -webkit-filter: blur(2cqi) drop-shadow(0 0 5cqi #ff85a1);
 }
 
 .flower-light:nth-child(even) {
     background-color: #ff1744;
     filter: blur(2cqi) drop-shadow(0 0 5cqi #ff4d7d);
-    -webkit-filter: blur(2cqi) drop-shadow(0 0 5cqi #ff4d7d);
 }
 
 .flower-light__1 {
@@ -501,15 +487,15 @@ body {
 }
 
 .flower-stem {
-    width: 100%;
+    width: 6%;
     height: 100%;
     transform: scaleY(0);
-    -webkit-transform: scaleY(0);
     background-image: linear-gradient(to left, rgba(0, 0, 0, 0.2), transparent, rgba(87, 42, 25, 0.2)),
-        linear-gradient(to top, transparent 10%, #8b4f6199, #8b4f6199);
+        linear-gradient(to top, transparent 10%, #13a11599, #b400a87c);
     border-radius: 50px 50px 0 0;
     transform-origin: bottom center;
-    -webkit-transform-origin: bottom center;
+    position: absolute;
+    right: 48%;
 }
 
 .flower-leaf {
@@ -522,54 +508,46 @@ body {
 
 .flower-leaf:nth-child(even) {
     right: 55%;
-    background-image: linear-gradient(120deg, #c2185baa 0%, #c2185b00 90%);
+    background-image: linear-gradient(120deg, #2fc218aa 0%, #c2185b00 90%);
     border-radius: 0% 100% 0% 100%/0% 100% 0% 100%;
     transform-origin: bottom right;
-    -webkit-transform-origin: bottom right;
 }
 
 .flower-leaf:nth-child(odd) {
     left: 55%;
-    background-image: linear-gradient(300deg, #c2185baa 0%, #c2185b00 90%);
+    background-image: linear-gradient(300deg, #2fc218aa 0%, #c2185b00 90%);
     border-radius: 100% 0% 100% 0%/100% 0% 100% 0%;
     transform-origin: bottom left;
-    -webkit-transform-origin: bottom left;
 }
 
 .flower-leaf__2 {
     top: 25%;
     transform: rotate(-15deg) scale(1);
-    -webkit-transform: rotate(-15deg) scale(1);
 }
 
 .flower-leaf__1 {
     top: 31%;
     transform: rotate(15deg) scale(1);
-    -webkit-transform: rotate(15deg) scale(1);
 }
 
 .flower-leaf__4 {
     top: 37%;
     transform: rotate(-15deg) scale(1.2);
-    -webkit-transform: rotate(-15deg) scale(1.2);
 }
 
 .flower-leaf__3 {
     top: 43%;
     transform: rotate(15deg) scale(1.2);
-    -webkit-transform: rotate(15deg) scale(1.2);
 }
 
 .flower-leaf__6 {
     top: 50%;
     transform: rotate(-15deg) scale(1.5);
-    -webkit-transform: rotate(-15deg) scale(1.5);
 }
 
 .flower-leaf__5 {
     top: 56%;
     transform: rotate(15deg) scale(1.5);
-    -webkit-transform: rotate(15deg) scale(1.5);
 }
 
 .flower-grass {
@@ -580,23 +558,20 @@ body {
     opacity: 0;
     scale: 0;
     mask-image: linear-gradient(to top, transparent 15%, #fff 50%);
-    -webkit-mask-image: linear-gradient(to top, transparent 15%, #fff 50%);
 }
 
 .flower-grass:nth-child(odd) {
     right: 55%;
     border-top-right-radius: 100%;
-    border-right: 5cqi solid #c2185baa;
+    border-right: 5cqi solid #258525aa;
     transform-origin: bottom right;
-    -webkit-transform-origin: bottom right;
 }
 
 .flower-grass:nth-child(even) {
     left: 55%;
     border-top-left-radius: 100%;
-    border-left: 5cqi solid #c2185baa;
+    border-left: 5cqi solid #258525aa;
     transform-origin: bottom left;
-    -webkit-transform-origin: bottom left;
 }
 
 .flower-grass__3 {
@@ -1418,106 +1393,3 @@ body {
     -webkit-animation: logoAttention 3s ease-in-out infinite,
         superAttention 5s ease-in-out infinite 10s;
 }
-
-/* ===== FIX REFORZADO PARA iOS - DESPLAZAMIENTO DE PÉTALOS/HOJAS/CÉSPED ===== */
-
-/* Detectar Safari/iOS y corregir el offset más agresivamente */
-@supports (-webkit-touch-callout: none) {
-    /* Safari/iOS específico */
-
-    /* Ajuste principal del contenedor de la flor superior */
-    .flower-top {
-        left: calc(50% - 1.5cqi);
-        transform: translate(-50%, 50%) translateX(-1cqi);
-        -webkit-transform: translate(-50%, 50%) translateX(-1cqi);
-    }
-
-    /* Centro de la flor */
-    .flower-circle {
-        left: calc(50% + 1cqi);
-    }
-
-    /* Todos los pétalos - ajuste global */
-    .flower-petal {
-        margin-left: -2cqi;
-    }
-
-    /* Ajuste adicional por pétalo individual si es necesario */
-    .flower-petal__1,
-    .flower-petal__2,
-    .flower-petal__3,
-    .flower-petal__4,
-    .flower-petal__5,
-    .flower-petal__6,
-    .flower-petal__7,
-    .flower-petal__8 {
-        transform-origin: center center;
-        -webkit-transform-origin: center center;
-    }
-
-    /* Hojas - ajuste reforzado */
-    .flower-leaf {
-        transform-origin: bottom center;
-        -webkit-transform-origin: bottom center;
-    }
-
-    .flower-leaf:nth-child(even) {
-        right: calc(55% + 1cqi);
-    }
-
-    .flower-leaf:nth-child(odd) {
-        left: calc(55% - 1cqi);
-    }
-
-    /* Césped - ajuste reforzado */
-    .flower-grass:nth-child(odd) {
-        right: calc(55% + 1cqi);
-    }
-
-    .flower-grass:nth-child(even) {
-        left: calc(55% - 1cqi);
-    }
-
-    /* Ajuste del contenedor del tallo si es necesario */
-    .flower-bottom {
-        left: calc(47% + 0.5cqi);
-    }
-}
-
-/* ALTERNATIVA: Si el fix anterior no funciona perfectamente, usa este */
-/* Descomenta este bloque y comenta el anterior */
-
-/*
-@supports (-webkit-touch-callout: none) {
-    .flower-container {
-        transform-origin: bottom center;
-        -webkit-transform-origin: bottom center;
-    }
-    
-    .flower-top {
-        position: relative;
-        left: 48%;
-    }
-    
-    .flower-petal {
-        position: absolute;
-        margin-left: -3cqi;
-    }
-    
-    .flower-leaf:nth-child(even) {
-        right: calc(55% + 1.5cqi);
-    }
-    
-    .flower-leaf:nth-child(odd) {
-        left: calc(55% - 1.5cqi);
-    }
-    
-    .flower-grass:nth-child(odd) {
-        right: calc(55% + 1.5cqi);
-    }
-    
-    .flower-grass:nth-child(even) {
-        left: calc(55% - 1.5cqi);
-    }
-}
-*/
