@@ -15,20 +15,6 @@ body {
     position: relative;
 }
 
-/* Degradado mejorado para móviles */
-@media (max-width: 768px) {
-    body {
-        background-image: linear-gradient(to bottom, #ffa8b5 0%, #ffb3c6 20%, #ffd4e5 40%, #ffeef2 60%, #ffb3c1 80%, #ff85a1 100%);
-        min-height: 100dvh;
-    }
-}
-
-@media (max-width: 480px) {
-    body {
-        background-image: linear-gradient(to bottom, #ffb3c6 0%, #ffd4e5 15%, #fff0f5 35%, #ffe4e1 55%, #ffc1d4 75%, #ff85a1 100%);
-    }
-}
-
 #tapHint {
     position: fixed;
     inset: 0;
@@ -1433,55 +1419,105 @@ body {
         superAttention 5s ease-in-out infinite 10s;
 }
 
-/* ===== FIX PARA iOS - DESPLAZAMIENTO DE PÉTALOS/HOJAS ===== */
+/* ===== FIX REFORZADO PARA iOS - DESPLAZAMIENTO DE PÉTALOS/HOJAS/CÉSPED ===== */
 
-/* Detectar Safari/iOS y corregir el offset */
+/* Detectar Safari/iOS y corregir el offset más agresivamente */
 @supports (-webkit-touch-callout: none) {
     /* Safari/iOS específico */
 
+    /* Ajuste principal del contenedor de la flor superior */
     .flower-top {
-        /* Ajuste fino para centrar correctamente en iOS */
-        left: calc(50% + 0.5cqi);
+        left: calc(50% - 1.5cqi);
+        transform: translate(-50%, 50%) translateX(-1cqi);
+        -webkit-transform: translate(-50%, 50%) translateX(-1cqi);
     }
 
+    /* Centro de la flor */
     .flower-circle {
-        /* Compensar desplazamiento en iOS */
-        left: calc(50% - 0.3cqi);
+        left: calc(50% + 1cqi);
     }
 
+    /* Todos los pétalos - ajuste global */
     .flower-petal {
-        /* Pequeño ajuste global para todos los pétalos */
-        margin-left: -0.5cqi;
+        margin-left: -2cqi;
     }
 
+    /* Ajuste adicional por pétalo individual si es necesario */
+    .flower-petal__1,
+    .flower-petal__2,
+    .flower-petal__3,
+    .flower-petal__4,
+    .flower-petal__5,
+    .flower-petal__6,
+    .flower-petal__7,
+    .flower-petal__8 {
+        transform-origin: center center;
+        -webkit-transform-origin: center center;
+    }
+
+    /* Hojas - ajuste reforzado */
     .flower-leaf {
-        /* Ajuste para hojas */
         transform-origin: bottom center;
         -webkit-transform-origin: bottom center;
     }
 
     .flower-leaf:nth-child(even) {
-        right: calc(55% + 0.3cqi);
+        right: calc(55% + 1cqi);
     }
 
     .flower-leaf:nth-child(odd) {
-        left: calc(55% - 0.3cqi);
+        left: calc(55% - 1cqi);
     }
 
+    /* Césped - ajuste reforzado */
     .flower-grass:nth-child(odd) {
-        right: calc(55% + 0.3cqi);
+        right: calc(55% + 1cqi);
     }
 
     .flower-grass:nth-child(even) {
-        left: calc(55% - 0.3cqi);
+        left: calc(55% - 1cqi);
+    }
+
+    /* Ajuste del contenedor del tallo si es necesario */
+    .flower-bottom {
+        left: calc(47% + 0.5cqi);
     }
 }
 
-/* Fix adicional para Huawei (si es necesario) */
-@supports not (-webkit-touch-callout: none) {
-    @media (hover: none) and (pointer: coarse) {
-        .flower-top {
-            left: calc(50% + 0.2cqi);
-        }
+/* ALTERNATIVA: Si el fix anterior no funciona perfectamente, usa este */
+/* Descomenta este bloque y comenta el anterior */
+
+/*
+@supports (-webkit-touch-callout: none) {
+    .flower-container {
+        transform-origin: bottom center;
+        -webkit-transform-origin: bottom center;
+    }
+    
+    .flower-top {
+        position: relative;
+        left: 48%;
+    }
+    
+    .flower-petal {
+        position: absolute;
+        margin-left: -3cqi;
+    }
+    
+    .flower-leaf:nth-child(even) {
+        right: calc(55% + 1.5cqi);
+    }
+    
+    .flower-leaf:nth-child(odd) {
+        left: calc(55% - 1.5cqi);
+    }
+    
+    .flower-grass:nth-child(odd) {
+        right: calc(55% + 1.5cqi);
+    }
+    
+    .flower-grass:nth-child(even) {
+        left: calc(55% - 1.5cqi);
     }
 }
+*/
