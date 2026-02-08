@@ -1432,3 +1432,56 @@ body {
     -webkit-animation: logoAttention 3s ease-in-out infinite,
         superAttention 5s ease-in-out infinite 10s;
 }
+
+/* ===== FIX PARA iOS - DESPLAZAMIENTO DE PÉTALOS/HOJAS ===== */
+
+/* Detectar Safari/iOS y corregir el offset */
+@supports (-webkit-touch-callout: none) {
+    /* Safari/iOS específico */
+
+    .flower-top {
+        /* Ajuste fino para centrar correctamente en iOS */
+        left: calc(50% + 0.5cqi);
+    }
+
+    .flower-circle {
+        /* Compensar desplazamiento en iOS */
+        left: calc(50% - 0.3cqi);
+    }
+
+    .flower-petal {
+        /* Pequeño ajuste global para todos los pétalos */
+        margin-left: -0.5cqi;
+    }
+
+    .flower-leaf {
+        /* Ajuste para hojas */
+        transform-origin: bottom center;
+        -webkit-transform-origin: bottom center;
+    }
+
+    .flower-leaf:nth-child(even) {
+        right: calc(55% + 0.3cqi);
+    }
+
+    .flower-leaf:nth-child(odd) {
+        left: calc(55% - 0.3cqi);
+    }
+
+    .flower-grass:nth-child(odd) {
+        right: calc(55% + 0.3cqi);
+    }
+
+    .flower-grass:nth-child(even) {
+        left: calc(55% - 0.3cqi);
+    }
+}
+
+/* Fix adicional para Huawei (si es necesario) */
+@supports not (-webkit-touch-callout: none) {
+    @media (hover: none) and (pointer: coarse) {
+        .flower-top {
+            left: calc(50% + 0.2cqi);
+        }
+    }
+}
