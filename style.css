@@ -1,0 +1,1166 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-image: linear-gradient(to bottom, #ff9a9e 0%, #fad0c4 25%, #ffecd2 50%, #fcb69f 75%, #ff6b9d 100%);
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    align-content: center;
+    justify-items: center;
+    overflow: hidden;
+}
+
+/* Degradado mejorado para móviles */
+@media (max-width: 768px) {
+    body {
+        background-image: linear-gradient(to bottom, #ffa8b5 0%, #ffb3c6 20%, #ffd4e5 40%, #ffeef2 60%, #ffb3c1 80%, #ff85a1 100%);
+        height: 100dvh;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        background-image: linear-gradient(to bottom, #ffb3c6 0%, #ffd4e5 15%, #fff0f5 35%, #ffe4e1 55%, #ffc1d4 75%, #ff85a1 100%);
+    }
+}
+
+#tapHint {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: clamp(1rem, 3vw, 1.2rem);
+    background: rgba(255, 105, 180, 0.3);
+    cursor: pointer;
+    z-index: 999;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-align: center;
+    padding: 1rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+
+    /* Animación suave de pulsación */
+    animation: tapHintPulse 2s ease-in-out infinite;
+}
+
+/* Animación de pulsación suave */
+@keyframes tapHintPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.05);
+        opacity: 0.9;
+    }
+}
+
+/* Efecto adicional para el emoji */
+#tapHint::before {
+    content: '';
+    display: inline-block;
+    animation: tapHintGlow 2s ease-in-out infinite;
+}
+
+@keyframes tapHintGlow {
+
+    0%,
+    100% {
+        filter: drop-shadow(0 0 5px rgba(255, 182, 193, 0.5));
+    }
+
+    50% {
+        filter: drop-shadow(0 0 15px rgba(255, 182, 193, 0.8));
+    }
+}
+
+/* Efecto hover en desktop */
+@media (hover: hover) {
+    #tapHint:hover {
+        background: rgba(255, 105, 180, 0.5);
+        transform: scale(1.02);
+        transition: all 0.3s ease;
+    }
+}
+
+/* Tablets (portrait y landscape) */
+@media (max-width: 1024px) and (min-width: 769px) {
+    #tapHint {
+        font-size: clamp(1.1rem, 3.5vw, 1.3rem);
+        padding: 1.2rem;
+    }
+}
+
+/* Tablets pequeñas y móviles grandes */
+@media (max-width: 768px) and (min-width: 481px) {
+    #tapHint {
+        font-size: clamp(1rem, 4vw, 1.15rem);
+        padding: 1rem;
+        letter-spacing: 0.3px;
+    }
+}
+
+/* Móviles */
+@media (max-width: 480px) {
+    #tapHint {
+        font-size: clamp(0.9rem, 4.5vw, 1.1rem);
+        padding: 0.8rem;
+        line-height: 1.4;
+    }
+}
+
+/* Móviles pequeños */
+@media (max-width: 360px) {
+    #tapHint {
+        font-size: clamp(0.85rem, 5vw, 1rem);
+        padding: 0.7rem;
+    }
+}
+
+/* Landscape en móviles */
+@media (max-width: 768px) and (orientation: landscape) {
+    #tapHint {
+        font-size: clamp(0.85rem, 3.5vh, 1rem);
+        padding: 0.5rem 1rem;
+    }
+}
+
+/* Pantallas muy anchas (desktop grande) */
+@media (min-width: 1920px) {
+    #tapHint {
+        font-size: 1.4rem;
+    }
+}
+
+/* Dispositivos con touch - mejor área de tap */
+@media (hover: none) and (pointer: coarse) {
+    #tapHint {
+        padding: 1.5rem;
+        min-height: 44px;
+        /* Mínimo recomendado por Apple */
+    }
+}
+
+@media (max-width: 768px) {
+    #tapHint {
+        font-size: 1rem;
+        padding: 1.5rem;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    #tapHint {
+        font-size: 0.9rem;
+        padding: 1rem;
+    }
+}
+
+.ground {
+    width: 100vmin;
+    aspect-ratio: 1.5;
+    overflow: visible;
+    position: relative;
+    transform-origin: center center;
+    transform: scale(0);
+    animation: shrink 1.5s ease-in forwards 4s;
+    animation-play-state: paused;
+    will-change: transform;
+    backface-visibility: hidden;
+}
+
+/* Ajustes sutiles para tablets - sin cambiar desktop */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .ground {
+        width: 95vmin;
+    }
+}
+
+/* Ajustes para tablets en portrait */
+@media (max-width: 768px) and (min-width: 481px) {
+    .ground {
+        width: 85vmin;
+    }
+}
+
+/* Ajustes para móviles */
+@media (max-width: 480px) {
+    .ground {
+        width: 90vw;
+        max-width: 90vmin;
+    }
+}
+
+/* Landscape en móviles */
+@media (max-width: 768px) and (orientation: landscape) {
+    .ground {
+        width: 75vh;
+        max-width: 85vw;
+    }
+}
+
+.flower-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.flower-container:first-child {
+    top: 50%;
+    left: 50%;
+}
+
+.flower-container:nth-child(2) {
+    top: 45%;
+    left: 30%;
+    width: 8%;
+}
+
+.flower-container:nth-child(3) {
+    top: 45%;
+    left: 70%;
+    width: 8%;
+}
+
+.flower-container:nth-child(4) {
+    top: 85%;
+    left: 95%;
+    width: 20%;
+}
+
+.flower-container:nth-child(5) {
+    top: 130%;
+    left: 30%;
+    width: 30%;
+}
+
+.flower-container:nth-child(6) {
+    top: 60%;
+    left: 10%;
+    width: 12%;
+}
+
+.flower-container:nth-child(7) {
+    top: 20%;
+    left: 15%;
+    width: 6%;
+}
+
+.flower-container:nth-child(8) {
+    top: 15%;
+    left: 35%;
+    width: 5%;
+}
+
+.flower-container:nth-child(9) {
+    top: 26%;
+    left: 85%;
+    width: 7%;
+}
+
+.flower-container:nth-child(10) {
+    top: 22%;
+    left: 60%;
+    width: 6.5%;
+}
+
+/* Ajustes móviles: flores ligeramente más grandes y mejor espaciadas */
+@media (max-width: 768px) {
+    .flower-container:first-child {
+        width: 13%;
+    }
+
+    .flower-container:nth-child(2) {
+        width: 10%;
+        top: 43%;
+        left: 28%;
+    }
+
+    .flower-container:nth-child(3) {
+        width: 10%;
+        top: 43%;
+        left: 72%;
+    }
+
+    .flower-container:nth-child(4) {
+        width: 24%;
+        top: 88%;
+        left: 93%;
+    }
+
+    .flower-container:nth-child(5) {
+        width: 35%;
+        top: 128%;
+        left: 28%;
+    }
+
+    .flower-container:nth-child(6) {
+        width: 15%;
+        top: 58%;
+        left: 8%;
+    }
+
+    .flower-container:nth-child(7) {
+        width: 8%;
+        top: 18%;
+        left: 13%;
+    }
+
+    .flower-container:nth-child(8) {
+        width: 7%;
+        top: 13%;
+        left: 35%;
+    }
+
+    .flower-container:nth-child(9) {
+        width: 9%;
+        top: 24%;
+        left: 87%;
+    }
+
+    .flower-container:nth-child(10) {
+        width: 8%;
+        top: 20%;
+        left: 60%;
+    }
+}
+
+@media (max-width: 480px) {
+    .flower-container:first-child {
+        width: 15%;
+    }
+
+    .flower-container:nth-child(2),
+    .flower-container:nth-child(3) {
+        width: 11%;
+    }
+
+    .flower-container:nth-child(4) {
+        width: 26%;
+    }
+
+    .flower-container:nth-child(5) {
+        width: 38%;
+    }
+
+    .flower-container:nth-child(6) {
+        width: 16%;
+    }
+}
+
+/* Landscape móviles - ajuste especial */
+@media (max-width: 768px) and (orientation: landscape) {
+    .flower-container:first-child {
+        width: 11%;
+    }
+
+    .flower-container:nth-child(4) {
+        top: 90%;
+    }
+
+    .flower-container:nth-child(5) {
+        top: 125%;
+    }
+}
+
+.flower-container {
+    width: 10%;
+    aspect-ratio: 16;
+    container-type: inline-size;
+    filter: drop-shadow(0 0 2vmin #ff69b4cc);
+    justify-items: center;
+    align-content: center;
+    transform-origin: bottom center;
+}
+
+.flower-top {
+    width: 50cqi;
+    aspect-ratio: 1.5;
+    position: relative;
+    z-index: 1;
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+}
+
+.flower-circle {
+    width: 30cqi;
+    aspect-ratio: 1.5;
+    border-radius: 50%;
+    background-color: #ffd4e5;
+    box-shadow: inset 0px -3cqi 3cqi #ff69b433;
+    position: absolute;
+    scale: 0;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 100% 100% 100% 100%/90% 90% 90% 90%;
+    filter: drop-shadow(0 0 15cqi #ff85a1);
+    transform-origin: top left;
+}
+
+.flower-petal {
+    width: 80%;
+    aspect-ratio: 1;
+    background-color: #ffb3c6;
+    background-image: linear-gradient(135deg, #ff1744 20%, #ff4d7d 50%, #ffb3d9 80%);
+    position: absolute;
+    opacity: 0;
+}
+
+.flower-petal__1 {
+    bottom: 42%;
+    right: 65%;
+    border-radius: 0px 100% 5% 100%/0px 100% 5% 100%;
+    transform: rotate(-10deg) scale(0.82);
+}
+
+.flower-petal__2 {
+    bottom: 42%;
+    left: 65%;
+    border-radius: 0px 100% 5% 100%/0px 100% 5% 100%;
+    transform: rotate(100deg) scale(0.82);
+}
+
+.flower-petal__3 {
+    bottom: 40%;
+    left: 10%;
+    border-radius: 0px 100% 50% 100%/0px 100% 50% 100%;
+    transform: rotate(45deg) scale(0.8);
+}
+
+.flower-petal__4 {
+    top: -10%;
+    left: 80%;
+    border-radius: 0px 100% 0% 100%/0px 100% 0% 100%;
+    transform: rotate(135deg) scale(0.9);
+}
+
+.flower-petal__5 {
+    top: -10%;
+    right: 70%;
+    border-radius: 0px 100% 0% 100%/0px 100% 0% 100%;
+    transform: rotate(315deg) scale(0.9);
+}
+
+.flower-petal__6 {
+    top: 50%;
+    right: 65%;
+    border-radius: 0px 100% 10% 100%/0px 100% 5% 100%;
+    transform: rotate(270deg) scale(1.1);
+}
+
+.flower-petal__7 {
+    top: 50%;
+    left: 65%;
+    border-radius: 0px 100% 10% 100%/0px 100% 5% 100%;
+    transform: rotate(180deg) scale(1.1);
+}
+
+.flower-petal__8 {
+    top: 50%;
+    left: 10%;
+    border-radius: 0px 100% 50% 100%/0px 100% 30% 100%;
+    transform: rotate(225deg) scale(1);
+}
+
+.flower-light {
+    width: 3cqi;
+    aspect-ratio: 1;
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0;
+}
+
+.flower-light:nth-child(odd) {
+    background-color: #ffb3d9;
+    filter: blur(2cqi) drop-shadow(0 0 5cqi #ff85a1);
+}
+
+.flower-light:nth-child(even) {
+    background-color: #ff1744;
+    filter: blur(2cqi) drop-shadow(0 0 5cqi #ff4d7d);
+}
+
+.flower-light__1 {
+    top: 10%;
+    left: 20%;
+    scale: 0.8;
+}
+
+.flower-light__2 {
+    top: 20%;
+    left: 80%;
+    scale: 1.2;
+}
+
+.flower-light__3 {
+    top: 30%;
+    left: 50%;
+    scale: 1.5;
+}
+
+.flower-light__4 {
+    top: 40%;
+    left: 10%;
+}
+
+.flower-light__5 {
+    top: 50%;
+    left: 90%;
+    scale: 2;
+}
+
+.flower-light__6 {
+    top: 60%;
+    left: 30%;
+}
+
+.flower-light__7 {
+    top: 70%;
+    left: 40%;
+    scale: 0.5;
+}
+
+.flower-light__8 {
+    top: 60%;
+    left: 60%;
+}
+
+.flower-bottom {
+    width: 6%;
+    aspect-ratio: 0.02;
+    left: 47%;
+    top: 50%;
+}
+
+.flower-stem {
+    width: 100%;
+    height: 100%;
+    transform: scaleY(0);
+    background-image: linear-gradient(to left, rgba(0, 0, 0, 0.2), transparent, rgba(87, 42, 25, 0.2)),
+        linear-gradient(to top, transparent 10%, #8b4f6199, #8b4f6199);
+    border-radius: 50px 50px 0 0;
+    transform-origin: bottom center;
+}
+
+.flower-leaf {
+    width: 40%;
+    aspect-ratio: 2.5;
+    position: absolute;
+    scale: 0;
+    opacity: 0;
+}
+
+.flower-leaf:nth-child(even) {
+    right: 55%;
+    background-image: linear-gradient(120deg, #c2185baa 0%, #c2185b00 90%);
+    border-radius: 0% 100% 0% 100%/0% 100% 0% 100%;
+    transform-origin: bottom right;
+}
+
+.flower-leaf:nth-child(odd) {
+    left: 55%;
+    background-image: linear-gradient(300deg, #c2185baa 0%, #c2185b00 90%);
+    border-radius: 100% 0% 100% 0%/100% 0% 100% 0%;
+    transform-origin: bottom left;
+}
+
+.flower-leaf__2 {
+    top: 25%;
+    transform: rotate(-15deg) scale(1);
+}
+
+.flower-leaf__1 {
+    top: 31%;
+    transform: rotate(15deg) scale(1);
+}
+
+.flower-leaf__4 {
+    top: 37%;
+    transform: rotate(-15deg) scale(1.2);
+}
+
+.flower-leaf__3 {
+    top: 43%;
+    transform: rotate(15deg) scale(1.2);
+}
+
+.flower-leaf__6 {
+    top: 50%;
+    transform: rotate(-15deg) scale(1.5);
+}
+
+.flower-leaf__5 {
+    top: 56%;
+    transform: rotate(15deg) scale(1.5);
+}
+
+.flower-grass {
+    position: absolute;
+    bottom: -20cqi;
+    width: 80cqi;
+    height: 120cqi;
+    opacity: 0;
+    scale: 0;
+    mask-image: linear-gradient(to top, transparent 15%, #fff 50%);
+}
+
+.flower-grass:nth-child(odd) {
+    right: 55%;
+    border-top-right-radius: 100%;
+    border-right: 5cqi solid #c2185baa;
+    transform-origin: bottom right;
+}
+
+.flower-grass:nth-child(even) {
+    left: 55%;
+    border-top-left-radius: 100%;
+    border-left: 5cqi solid #c2185baa;
+    transform-origin: bottom left;
+}
+
+.flower-grass__3 {
+    left: 70% !important;
+    width: 75cqi;
+    height: 100cqi;
+}
+
+.flower-grass__4 {
+    right: 70% !important;
+    width: 75cqi;
+    height: 90cqi;
+}
+
+.animate {
+    &.flower-container {
+        animation: flower-rotate 12s linear infinite;
+    }
+
+    .flower-circle {
+        animation: grass-grow 0.25s ease-in forwards 3s;
+    }
+
+    .flower-petal {
+        animation: petal-grow 0.5s ease-in forwards,
+            flower-rotate 3s linear infinite;
+    }
+
+    .flower-petal__3 {
+        animation-delay: 3.2s;
+    }
+
+    .flower-petal__2 {
+        animation-delay: 3.3s;
+    }
+
+    .flower-petal__4 {
+        animation-delay: 3.4s;
+    }
+
+    .flower-petal__7 {
+        animation-delay: 3.5s;
+    }
+
+    .flower-petal__8 {
+        animation-delay: 3.6s;
+    }
+
+    .flower-petal__6 {
+        animation-delay: 3.7s;
+    }
+
+    .flower-petal__5 {
+        animation-delay: 3.8s;
+    }
+
+    .flower-petal__1 {
+        animation-delay: 3.9s;
+    }
+
+    .flower-stem {
+        animation: stem-grow 3s ease-in forwards;
+    }
+
+    .flower-grass {
+        animation: grass-grow 1s ease-in forwards 1.5s,
+            flower-rotate 6s linear infinite;
+    }
+
+    .flower-leaf {
+        animation: grass-grow 0.75s ease-in forwards,
+            flower-rotate 6s linear infinite;
+    }
+
+    .flower-leaf__2 {
+        animation-delay: 2s;
+    }
+
+    .flower-leaf__1 {
+        animation-delay: 1.9s;
+    }
+
+    .flower-leaf__4 {
+        animation-delay: 1.8s;
+    }
+
+    .flower-leaf__3 {
+        animation-delay: 1.65s;
+    }
+
+    .flower-leaf__6 {
+        animation-delay: 1.5s;
+    }
+
+    .flower-leaf__5 {
+        animation-delay: 1.25s;
+    }
+
+    .flower-light {
+        animation: light-float 5s ease-in-out infinite;
+    }
+
+    .flower-light__1 {
+        animation-delay: 4.7s;
+    }
+
+    .flower-light__2 {
+        animation-delay: 5.2s;
+    }
+
+    .flower-light__3 {
+        animation-delay: 5.7s;
+    }
+
+    .flower-light__4 {
+        animation-delay: 6.2s;
+    }
+
+    .flower-light__5 {
+        animation-delay: 6.7s;
+    }
+
+    .flower-light__6 {
+        animation-delay: 7.2s;
+    }
+
+    .flower-light__7 {
+        animation-delay: 7.7s;
+    }
+
+    .flower-light__8 {
+        animation-delay: 8.2s;
+    }
+}
+
+@keyframes petal-grow {
+    0% {
+        scale: 0;
+        opacity: 0.8;
+    }
+
+    50% {
+        scale: 1;
+        opacity: 0.8;
+    }
+
+    75% {
+        scale: 1.1;
+        opacity: 0.8;
+    }
+
+    90% {
+        scale: 0.9;
+        opacity: 0.8;
+    }
+
+    100% {
+        scale: 1;
+        opacity: 0.8;
+    }
+}
+
+@keyframes grass-grow {
+    100% {
+        opacity: 1;
+        scale: 1;
+    }
+}
+
+@keyframes stem-grow {
+    0% {
+        border-radius: 10%;
+    }
+
+    100% {
+        transform: scaleY(1);
+    }
+}
+
+@keyframes flower-rotate {
+
+    0%,
+    100% {
+        rotate: 0deg;
+    }
+
+    25% {
+        rotate: 5deg;
+    }
+
+    75% {
+        rotate: -5deg;
+    }
+}
+
+@keyframes shrink {
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes light-float {
+    0% {
+        opacity: 0;
+        transform: translate(0, 0);
+    }
+
+    25% {
+        opacity: 1;
+        transform: translate(20cqi, -25cqi);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translate(0, -50cqi);
+    }
+
+    75% {
+        opacity: 1;
+        transform: translate(-20cqi, -75cqi);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(0, -100cqi);
+    }
+}
+
+/* Optimización de rendimiento para móviles */
+@media (max-width: 768px) {
+
+    .flower-container,
+    .flower-petal,
+    .flower-light {
+        will-change: transform;
+    }
+
+    /* Suavizar animaciones en móviles para mejor rendimiento */
+    .animate.flower-container {
+        animation-timing-function: ease-in-out;
+    }
+}
+
+/* Prevenir zoom y mejorar interacción táctil */
+@media (hover: none) and (pointer: coarse) {
+    body {
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        user-select: none;
+    }
+
+    #tapHint {
+        touch-action: manipulation;
+    }
+}
+
+/* Ajustes para pantallas muy pequeñas */
+@media (max-width: 360px) {
+    .ground {
+        width: 95vw;
+    }
+
+    .flower-container:first-child {
+        width: 16%;
+    }
+}
+
+/* Soporte para notch en móviles */
+@supports (padding: max(0px)) {
+    body {
+        padding-left: max(0px, env(safe-area-inset-left));
+        padding-right: max(0px, env(safe-area-inset-right));
+    }
+}
+
+/* ===== LOGO ANIMADO EN ESQUINA INFERIOR IZQUIERDA ===== */
+
+.logo-container {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1000;
+    opacity: 0;
+    animation: fadeInLogo 1s ease-in forwards 2s;
+}
+
+.logo-container a {
+    display: block;
+    position: relative;
+}
+
+.logo {
+    width: 80px;
+    height: auto;
+    filter: drop-shadow(0 2px 8px rgb(255, 255, 255));
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    cursor: pointer;
+
+    /* Animación de llamado de atención continua */
+    animation: logoAttention 3s ease-in-out infinite 3s;
+}
+
+/* Efecto de pulso suave que llama la atención */
+@keyframes logoAttention {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    10% {
+        transform: scale(1.1) rotate(5deg);
+    }
+
+    20% {
+        transform: scale(1.05) rotate(-5deg);
+    }
+
+    30% {
+        transform: scale(1);
+    }
+}
+
+/* Animación de entrada */
+@keyframes fadeInLogo {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.8);
+    }
+
+    60% {
+        transform: translateY(-5px) scale(1.1);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Efecto hover - Desktop */
+.logo:hover {
+    transform: scale(1.2) rotate(5deg);
+    filter: drop-shadow(0 6px 20px rgba(255, 69, 180, 0.7)) drop-shadow(0 0 15px rgba(255, 105, 180, 0.5));
+    animation: none;
+    /* Detener animación de atención al hacer hover */
+}
+
+/* Efecto de brillo pulsante detrás del logo */
+.logo-container::before {
+    content: '';
+    position: absolute;
+    inset: -10px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: -1;
+    animation: glowPulse 2s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+
+    0%,
+    100% {
+        opacity: 0.5;
+        transform: scale(0.9);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+/* Efecto de clic/tap - móvil y desktop */
+.logo:active {
+    transform: scale(0.95);
+    filter: drop-shadow(0 2px 8px rgba(255, 69, 180, 0.9));
+}
+
+/* Animación de "rebote" al tocar */
+@keyframes bounceClick {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(0.9);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Efecto adicional: partículas brillantes */
+.logo-container::after {
+    content: '';
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 24px;
+    height: 24px;
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>') no-repeat center;
+    mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>') no-repeat center;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    animation: sparkle 2.5s ease-in-out infinite;
+    pointer-events: none;
+    filter: drop-shadow(0 0 8px rgba(255, 105, 180, 0.8));
+}
+
+@keyframes sparkle {
+
+    0%,
+    100% {
+        opacity: 0;
+        transform: scale(0) rotate(0deg);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.2) rotate(180deg);
+    }
+}
+
+/* Responsive para tablets */
+@media (max-width: 768px) {
+    .logo-container {
+        bottom: 15px;
+        left: 15px;
+    }
+
+    .logo {
+        width: 60px;
+    }
+
+    .logo-container::after {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/* Responsive para móviles */
+@media (max-width: 480px) {
+    .logo-container {
+        bottom: 12px;
+        left: 12px;
+    }
+
+    .logo {
+        width: 50px;
+    }
+
+    .logo-container::after {
+        width: 18px;
+        height: 18px;
+        top: -3px;
+        right: -3px;
+    }
+}
+
+/* Ajuste para landscape en móviles */
+@media (max-width: 768px) and (orientation: landscape) {
+    .logo-container {
+        bottom: 10px;
+        left: 10px;
+    }
+
+    .logo {
+        width: 45px;
+    }
+}
+
+/* Efecto táctil mejorado para móviles */
+@media (hover: none) and (pointer: coarse) {
+    .logo:active {
+        animation: bounceClick 0.3s ease;
+    }
+
+    /* Área táctil más grande sin cambiar el tamaño visual */
+    .logo-container a::before {
+        content: '';
+        position: absolute;
+        inset: -10px;
+        z-index: -1;
+    }
+}
+
+/* Soporte para safe areas (notch) */
+@supports (padding: max(0px)) {
+    .logo-container {
+        bottom: max(20px, env(safe-area-inset-bottom));
+        left: max(20px, env(safe-area-inset-left));
+    }
+}
+
+/* Animación extra llamativa para usuarios que pasan tiempo sin clickear */
+@keyframes superAttention {
+
+    0%,
+    90%,
+    100% {
+        transform: scale(1);
+    }
+
+    92% {
+        transform: scale(1.15) rotate(10deg);
+    }
+
+    94% {
+        transform: scale(1.1) rotate(-10deg);
+    }
+
+    96% {
+        transform: scale(1.15) rotate(10deg);
+    }
+
+    98% {
+        transform: scale(1.1) rotate(-10deg);
+    }
+}
+
+/* Activar super atención después de 10 segundos */
+.logo-container.super-attention .logo {
+    animation: logoAttention 3s ease-in-out infinite,
+        superAttention 5s ease-in-out infinite 10s;
+}
+
+/* Activar super atención después de 10 segundos */
+.logo-container.super-attention .logo {
+    animation: logoAttention 3s ease-in-out infinite,
+        superAttention 5s ease-in-out infinite 10s;
+}
