@@ -117,8 +117,8 @@ body {
     animation-play-state: paused;
     will-change: transform;
     backface-visibility: hidden;
-    margin-bottom: 20vh;
-    /* Más arriba */
+    margin-bottom: 30vh;
+    /* Mucho más arriba para centrar */
 }
 
 /* Ajustes para móviles - flores más grandes y mejor posicionadas */
@@ -126,8 +126,8 @@ body {
     .ground {
         width: 95vw;
         max-width: 95vmin;
-        margin-bottom: 12vh;
-        /* Más arriba */
+        margin-bottom: 25vh;
+        /* Centrado en tablets */
         aspect-ratio: 1.2;
         /* Más vertical en móviles */
     }
@@ -137,8 +137,8 @@ body {
     .ground {
         width: 100vw;
         max-width: 100vmin;
-        margin-bottom: 8vh;
-        /* Más arriba */
+        margin-bottom: 20vh;
+        /* Centrado perfecto en móviles */
         aspect-ratio: 1.1;
     }
 }
@@ -148,8 +148,8 @@ body {
     .ground {
         width: 70vh;
         max-width: 85vw;
-        margin-bottom: 3vh;
-        /* Ajustado para landscape */
+        margin-bottom: 15vh;
+        /* Centrado en landscape */
     }
 }
 
