@@ -8,10 +8,8 @@ body {
     padding: 0;
     min-height: 100vh;
     min-height: 100dvh;
-    /* Usa viewport dinámico en móviles */
     display: flex;
     align-items: flex-end;
-    /* Alinea al fondo */
     justify-content: center;
     overflow: hidden;
     position: relative;
@@ -56,11 +54,13 @@ body {
     0%,
     100% {
         transform: scale(1);
+        -webkit-transform: scale(1);
         opacity: 1;
     }
 
     50% {
         transform: scale(1.05);
+        -webkit-transform: scale(1.05);
         opacity: 0.9;
     }
 }
@@ -76,10 +76,12 @@ body {
     0%,
     100% {
         filter: drop-shadow(0 0 5px rgba(255, 182, 193, 0.5));
+        -webkit-filter: drop-shadow(0 0 5px rgba(255, 182, 193, 0.5));
     }
 
     50% {
         filter: drop-shadow(0 0 15px rgba(255, 182, 193, 0.8));
+        -webkit-filter: drop-shadow(0 0 15px rgba(255, 182, 193, 0.8));
     }
 }
 
@@ -87,6 +89,7 @@ body {
     #tapHint:hover {
         background: rgba(255, 105, 180, 0.5);
         transform: scale(1.02);
+        -webkit-transform: scale(1.02);
         transition: all 0.3s ease;
     }
 }
@@ -111,14 +114,17 @@ body {
     overflow: visible;
     position: relative;
     transform-origin: center bottom;
-    /* Cambiado a bottom */
+    -webkit-transform-origin: center bottom;
     transform: scale(0);
+    -webkit-transform: scale(0);
     animation: shrink 1.5s ease-in forwards 4s;
+    -webkit-animation: shrink 1.5s ease-in forwards 4s;
     animation-play-state: paused;
+    -webkit-animation-play-state: paused;
     will-change: transform;
     backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
     margin-bottom: 30vh;
-    /* Mucho más arriba para centrar */
 }
 
 /* Ajustes para móviles - flores más grandes y mejor posicionadas */
@@ -127,9 +133,7 @@ body {
         width: 95vw;
         max-width: 95vmin;
         margin-bottom: 25vh;
-        /* Centrado en tablets */
         aspect-ratio: 1.2;
-        /* Más vertical en móviles */
     }
 }
 
@@ -138,7 +142,6 @@ body {
         width: 100vw;
         max-width: 100vmin;
         margin-bottom: 20vh;
-        /* Centrado perfecto en móviles */
         aspect-ratio: 1.1;
     }
 }
@@ -149,7 +152,6 @@ body {
         width: 70vh;
         max-width: 85vw;
         margin-bottom: 15vh;
-        /* Centrado en landscape */
     }
 }
 
@@ -159,9 +161,11 @@ body {
     aspect-ratio: 16;
     container-type: inline-size;
     filter: drop-shadow(0 0 2vmin #ff69b4cc);
+    -webkit-filter: drop-shadow(0 0 2vmin #ff69b4cc);
     justify-items: center;
     align-content: center;
     transform-origin: bottom center;
+    -webkit-transform-origin: bottom center;
 }
 
 /* Posiciones mejoradas para móviles */
@@ -169,6 +173,7 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
 }
 
 .flower-container:nth-child(2) {
@@ -342,6 +347,7 @@ body {
     bottom: 100%;
     left: 50%;
     transform: translate(-50%, 50%);
+    -webkit-transform: translate(-50%, 50%);
 }
 
 .flower-circle {
@@ -355,9 +361,12 @@ body {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
     border-radius: 100% 100% 100% 100%/90% 90% 90% 90%;
     filter: drop-shadow(0 0 15cqi #ff85a1);
+    -webkit-filter: drop-shadow(0 0 15cqi #ff85a1);
     transform-origin: top left;
+    -webkit-transform-origin: top left;
 }
 
 .flower-petal {
@@ -374,6 +383,7 @@ body {
     right: 65%;
     border-radius: 0px 100% 5% 100%/0px 100% 5% 100%;
     transform: rotate(-10deg) scale(0.82);
+    -webkit-transform: rotate(-10deg) scale(0.82);
 }
 
 .flower-petal__2 {
@@ -381,6 +391,7 @@ body {
     left: 65%;
     border-radius: 0px 100% 5% 100%/0px 100% 5% 100%;
     transform: rotate(100deg) scale(0.82);
+    -webkit-transform: rotate(100deg) scale(0.82);
 }
 
 .flower-petal__3 {
@@ -388,6 +399,7 @@ body {
     left: 10%;
     border-radius: 0px 100% 50% 100%/0px 100% 50% 100%;
     transform: rotate(45deg) scale(0.8);
+    -webkit-transform: rotate(45deg) scale(0.8);
 }
 
 .flower-petal__4 {
@@ -395,6 +407,7 @@ body {
     left: 80%;
     border-radius: 0px 100% 0% 100%/0px 100% 0% 100%;
     transform: rotate(135deg) scale(0.9);
+    -webkit-transform: rotate(135deg) scale(0.9);
 }
 
 .flower-petal__5 {
@@ -402,6 +415,7 @@ body {
     right: 70%;
     border-radius: 0px 100% 0% 100%/0px 100% 0% 100%;
     transform: rotate(315deg) scale(0.9);
+    -webkit-transform: rotate(315deg) scale(0.9);
 }
 
 .flower-petal__6 {
@@ -409,6 +423,7 @@ body {
     right: 65%;
     border-radius: 0px 100% 10% 100%/0px 100% 5% 100%;
     transform: rotate(270deg) scale(1.1);
+    -webkit-transform: rotate(270deg) scale(1.1);
 }
 
 .flower-petal__7 {
@@ -416,6 +431,7 @@ body {
     left: 65%;
     border-radius: 0px 100% 10% 100%/0px 100% 5% 100%;
     transform: rotate(180deg) scale(1.1);
+    -webkit-transform: rotate(180deg) scale(1.1);
 }
 
 .flower-petal__8 {
@@ -423,6 +439,7 @@ body {
     left: 10%;
     border-radius: 0px 100% 50% 100%/0px 100% 30% 100%;
     transform: rotate(225deg) scale(1);
+    -webkit-transform: rotate(225deg) scale(1);
 }
 
 .flower-light {
@@ -436,11 +453,13 @@ body {
 .flower-light:nth-child(odd) {
     background-color: #ffb3d9;
     filter: blur(2cqi) drop-shadow(0 0 5cqi #ff85a1);
+    -webkit-filter: blur(2cqi) drop-shadow(0 0 5cqi #ff85a1);
 }
 
 .flower-light:nth-child(even) {
     background-color: #ff1744;
     filter: blur(2cqi) drop-shadow(0 0 5cqi #ff4d7d);
+    -webkit-filter: blur(2cqi) drop-shadow(0 0 5cqi #ff4d7d);
 }
 
 .flower-light__1 {
@@ -499,10 +518,12 @@ body {
     width: 100%;
     height: 100%;
     transform: scaleY(0);
+    -webkit-transform: scaleY(0);
     background-image: linear-gradient(to left, rgba(0, 0, 0, 0.2), transparent, rgba(87, 42, 25, 0.2)),
         linear-gradient(to top, transparent 10%, #8b4f6199, #8b4f6199);
     border-radius: 50px 50px 0 0;
     transform-origin: bottom center;
+    -webkit-transform-origin: bottom center;
 }
 
 .flower-leaf {
@@ -518,6 +539,7 @@ body {
     background-image: linear-gradient(120deg, #c2185baa 0%, #c2185b00 90%);
     border-radius: 0% 100% 0% 100%/0% 100% 0% 100%;
     transform-origin: bottom right;
+    -webkit-transform-origin: bottom right;
 }
 
 .flower-leaf:nth-child(odd) {
@@ -525,36 +547,43 @@ body {
     background-image: linear-gradient(300deg, #c2185baa 0%, #c2185b00 90%);
     border-radius: 100% 0% 100% 0%/100% 0% 100% 0%;
     transform-origin: bottom left;
+    -webkit-transform-origin: bottom left;
 }
 
 .flower-leaf__2 {
     top: 25%;
     transform: rotate(-15deg) scale(1);
+    -webkit-transform: rotate(-15deg) scale(1);
 }
 
 .flower-leaf__1 {
     top: 31%;
     transform: rotate(15deg) scale(1);
+    -webkit-transform: rotate(15deg) scale(1);
 }
 
 .flower-leaf__4 {
     top: 37%;
     transform: rotate(-15deg) scale(1.2);
+    -webkit-transform: rotate(-15deg) scale(1.2);
 }
 
 .flower-leaf__3 {
     top: 43%;
     transform: rotate(15deg) scale(1.2);
+    -webkit-transform: rotate(15deg) scale(1.2);
 }
 
 .flower-leaf__6 {
     top: 50%;
     transform: rotate(-15deg) scale(1.5);
+    -webkit-transform: rotate(-15deg) scale(1.5);
 }
 
 .flower-leaf__5 {
     top: 56%;
     transform: rotate(15deg) scale(1.5);
+    -webkit-transform: rotate(15deg) scale(1.5);
 }
 
 .flower-grass {
@@ -565,6 +594,7 @@ body {
     opacity: 0;
     scale: 0;
     mask-image: linear-gradient(to top, transparent 15%, #fff 50%);
+    -webkit-mask-image: linear-gradient(to top, transparent 15%, #fff 50%);
 }
 
 .flower-grass:nth-child(odd) {
@@ -572,6 +602,7 @@ body {
     border-top-right-radius: 100%;
     border-right: 5cqi solid #c2185baa;
     transform-origin: bottom right;
+    -webkit-transform-origin: bottom right;
 }
 
 .flower-grass:nth-child(even) {
@@ -579,6 +610,7 @@ body {
     border-top-left-radius: 100%;
     border-left: 5cqi solid #c2185baa;
     transform-origin: bottom left;
+    -webkit-transform-origin: bottom left;
 }
 
 .flower-grass__3 {
@@ -596,125 +628,184 @@ body {
 .animate {
     &.flower-container {
         animation: flower-rotate 12s linear infinite;
+        -webkit-animation: flower-rotate 12s linear infinite;
     }
 
     .flower-circle {
         animation: grass-grow 0.25s ease-in forwards 3s;
+        -webkit-animation: grass-grow 0.25s ease-in forwards 3s;
     }
 
     .flower-petal {
         animation: petal-grow 0.5s ease-in forwards,
             flower-rotate 3s linear infinite;
+        -webkit-animation: petal-grow 0.5s ease-in forwards,
+            flower-rotate 3s linear infinite;
     }
 
     .flower-petal__3 {
         animation-delay: 3.2s;
+        -webkit-animation-delay: 3.2s;
     }
 
     .flower-petal__2 {
         animation-delay: 3.3s;
+        -webkit-animation-delay: 3.3s;
     }
 
     .flower-petal__4 {
         animation-delay: 3.4s;
+        -webkit-animation-delay: 3.4s;
     }
 
     .flower-petal__7 {
         animation-delay: 3.5s;
+        -webkit-animation-delay: 3.5s;
     }
 
     .flower-petal__8 {
         animation-delay: 3.6s;
+        -webkit-animation-delay: 3.6s;
     }
 
     .flower-petal__6 {
         animation-delay: 3.7s;
+        -webkit-animation-delay: 3.7s;
     }
 
     .flower-petal__5 {
         animation-delay: 3.8s;
+        -webkit-animation-delay: 3.8s;
     }
 
     .flower-petal__1 {
         animation-delay: 3.9s;
+        -webkit-animation-delay: 3.9s;
     }
 
     .flower-stem {
         animation: stem-grow 3s ease-in forwards;
+        -webkit-animation: stem-grow 3s ease-in forwards;
     }
 
     .flower-grass {
         animation: grass-grow 1s ease-in forwards 1.5s,
+            flower-rotate 6s linear infinite;
+        -webkit-animation: grass-grow 1s ease-in forwards 1.5s,
             flower-rotate 6s linear infinite;
     }
 
     .flower-leaf {
         animation: grass-grow 0.75s ease-in forwards,
             flower-rotate 6s linear infinite;
+        -webkit-animation: grass-grow 0.75s ease-in forwards,
+            flower-rotate 6s linear infinite;
     }
 
     .flower-leaf__2 {
         animation-delay: 2s;
+        -webkit-animation-delay: 2s;
     }
 
     .flower-leaf__1 {
         animation-delay: 1.9s;
+        -webkit-animation-delay: 1.9s;
     }
 
     .flower-leaf__4 {
         animation-delay: 1.8s;
+        -webkit-animation-delay: 1.8s;
     }
 
     .flower-leaf__3 {
         animation-delay: 1.65s;
+        -webkit-animation-delay: 1.65s;
     }
 
     .flower-leaf__6 {
         animation-delay: 1.5s;
+        -webkit-animation-delay: 1.5s;
     }
 
     .flower-leaf__5 {
         animation-delay: 1.25s;
+        -webkit-animation-delay: 1.25s;
     }
 
     .flower-light {
         animation: light-float 5s ease-in-out infinite;
+        -webkit-animation: light-float 5s ease-in-out infinite;
     }
 
     .flower-light__1 {
         animation-delay: 4.7s;
+        -webkit-animation-delay: 4.7s;
     }
 
     .flower-light__2 {
         animation-delay: 5.2s;
+        -webkit-animation-delay: 5.2s;
     }
 
     .flower-light__3 {
         animation-delay: 5.7s;
+        -webkit-animation-delay: 5.7s;
     }
 
     .flower-light__4 {
         animation-delay: 6.2s;
+        -webkit-animation-delay: 6.2s;
     }
 
     .flower-light__5 {
         animation-delay: 6.7s;
+        -webkit-animation-delay: 6.7s;
     }
 
     .flower-light__6 {
         animation-delay: 7.2s;
+        -webkit-animation-delay: 7.2s;
     }
 
     .flower-light__7 {
         animation-delay: 7.7s;
+        -webkit-animation-delay: 7.7s;
     }
 
     .flower-light__8 {
         animation-delay: 8.2s;
+        -webkit-animation-delay: 8.2s;
     }
 }
 
 @keyframes petal-grow {
+    0% {
+        scale: 0;
+        opacity: 0.8;
+    }
+
+    50% {
+        scale: 1;
+        opacity: 0.8;
+    }
+
+    75% {
+        scale: 1.1;
+        opacity: 0.8;
+    }
+
+    90% {
+        scale: 0.9;
+        opacity: 0.8;
+    }
+
+    100% {
+        scale: 1;
+        opacity: 0.8;
+    }
+}
+
+@-webkit-keyframes petal-grow {
     0% {
         scale: 0;
         opacity: 0.8;
@@ -748,6 +839,13 @@ body {
     }
 }
 
+@-webkit-keyframes grass-grow {
+    100% {
+        opacity: 1;
+        scale: 1;
+    }
+}
+
 @keyframes stem-grow {
     0% {
         border-radius: 10%;
@@ -755,6 +853,18 @@ body {
 
     100% {
         transform: scaleY(1);
+        -webkit-transform: scaleY(1);
+    }
+}
+
+@-webkit-keyframes stem-grow {
+    0% {
+        border-radius: 10%;
+    }
+
+    100% {
+        transform: scaleY(1);
+        -webkit-transform: scaleY(1);
     }
 }
 
@@ -774,9 +884,33 @@ body {
     }
 }
 
+@-webkit-keyframes flower-rotate {
+
+    0%,
+    100% {
+        rotate: 0deg;
+    }
+
+    25% {
+        rotate: 5deg;
+    }
+
+    75% {
+        rotate: -5deg;
+    }
+}
+
 @keyframes shrink {
     100% {
         transform: scale(1);
+        -webkit-transform: scale(1);
+    }
+}
+
+@-webkit-keyframes shrink {
+    100% {
+        transform: scale(1);
+        -webkit-transform: scale(1);
     }
 }
 
@@ -784,26 +918,63 @@ body {
     0% {
         opacity: 0;
         transform: translate(0, 0);
+        -webkit-transform: translate(0, 0);
     }
 
     25% {
         opacity: 1;
         transform: translate(20cqi, -25cqi);
+        -webkit-transform: translate(20cqi, -25cqi);
     }
 
     50% {
         opacity: 1;
         transform: translate(0, -50cqi);
+        -webkit-transform: translate(0, -50cqi);
     }
 
     75% {
         opacity: 1;
         transform: translate(-20cqi, -75cqi);
+        -webkit-transform: translate(-20cqi, -75cqi);
     }
 
     100% {
         opacity: 0;
         transform: translate(0, -100cqi);
+        -webkit-transform: translate(0, -100cqi);
+    }
+}
+
+@-webkit-keyframes light-float {
+    0% {
+        opacity: 0;
+        transform: translate(0, 0);
+        -webkit-transform: translate(0, 0);
+    }
+
+    25% {
+        opacity: 1;
+        transform: translate(20cqi, -25cqi);
+        -webkit-transform: translate(20cqi, -25cqi);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translate(0, -50cqi);
+        -webkit-transform: translate(0, -50cqi);
+    }
+
+    75% {
+        opacity: 1;
+        transform: translate(-20cqi, -75cqi);
+        -webkit-transform: translate(-20cqi, -75cqi);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(0, -100cqi);
+        -webkit-transform: translate(0, -100cqi);
     }
 }
 
@@ -818,6 +989,7 @@ body {
 
     .animate.flower-container {
         animation-timing-function: ease-in-out;
+        -webkit-animation-timing-function: ease-in-out;
     }
 }
 
@@ -865,6 +1037,7 @@ body {
     z-index: 1000;
     opacity: 0;
     animation: fadeInLogo 1s ease-in forwards 2s;
+    -webkit-animation: fadeInLogo 1s ease-in forwards 2s;
 }
 
 .logo-container a {
@@ -876,9 +1049,11 @@ body {
     width: 80px;
     height: auto;
     filter: drop-shadow(0 2px 8px rgb(255, 255, 255));
+    -webkit-filter: drop-shadow(0 2px 8px rgb(255, 255, 255));
     transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     cursor: pointer;
     animation: logoAttention 3s ease-in-out infinite 3s;
+    -webkit-animation: logoAttention 3s ease-in-out infinite 3s;
 }
 
 @keyframes logoAttention {
@@ -886,18 +1061,46 @@ body {
     0%,
     100% {
         transform: scale(1);
+        -webkit-transform: scale(1);
     }
 
     10% {
         transform: scale(1.1) rotate(5deg);
+        -webkit-transform: scale(1.1) rotate(5deg);
     }
 
     20% {
         transform: scale(1.05) rotate(-5deg);
+        -webkit-transform: scale(1.05) rotate(-5deg);
     }
 
     30% {
         transform: scale(1);
+        -webkit-transform: scale(1);
+    }
+}
+
+@-webkit-keyframes logoAttention {
+
+    0%,
+    100% {
+        transform: scale(1);
+        -webkit-transform: scale(1);
+    }
+
+    10% {
+        transform: scale(1.1) rotate(5deg);
+        -webkit-transform: scale(1.1) rotate(5deg);
+    }
+
+    20% {
+        transform: scale(1.05) rotate(-5deg);
+        -webkit-transform: scale(1.05) rotate(-5deg);
+    }
+
+    30% {
+        transform: scale(1);
+        -webkit-transform: scale(1);
     }
 }
 
@@ -905,22 +1108,47 @@ body {
     0% {
         opacity: 0;
         transform: translateY(20px) scale(0.8);
+        -webkit-transform: translateY(20px) scale(0.8);
     }
 
     60% {
         transform: translateY(-5px) scale(1.1);
+        -webkit-transform: translateY(-5px) scale(1.1);
     }
 
     100% {
         opacity: 1;
         transform: translateY(0) scale(1);
+        -webkit-transform: translateY(0) scale(1);
+    }
+}
+
+@-webkit-keyframes fadeInLogo {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.8);
+        -webkit-transform: translateY(20px) scale(0.8);
+    }
+
+    60% {
+        transform: translateY(-5px) scale(1.1);
+        -webkit-transform: translateY(-5px) scale(1.1);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        -webkit-transform: translateY(0) scale(1);
     }
 }
 
 .logo:hover {
     transform: scale(1.2) rotate(5deg);
+    -webkit-transform: scale(1.2) rotate(5deg);
     filter: drop-shadow(0 6px 20px rgba(255, 69, 180, 0.7)) drop-shadow(0 0 15px rgba(255, 105, 180, 0.5));
+    -webkit-filter: drop-shadow(0 6px 20px rgba(255, 69, 180, 0.7)) drop-shadow(0 0 15px rgba(255, 105, 180, 0.5));
     animation: none;
+    -webkit-animation: none;
 }
 
 .logo-container::before {
@@ -931,6 +1159,7 @@ body {
     border-radius: 50%;
     z-index: -1;
     animation: glowPulse 2s ease-in-out infinite;
+    -webkit-animation: glowPulse 2s ease-in-out infinite;
 }
 
 @keyframes glowPulse {
@@ -939,30 +1168,70 @@ body {
     100% {
         opacity: 0.5;
         transform: scale(0.9);
+        -webkit-transform: scale(0.9);
     }
 
     50% {
         opacity: 1;
         transform: scale(1.2);
+        -webkit-transform: scale(1.2);
+    }
+}
+
+@-webkit-keyframes glowPulse {
+
+    0%,
+    100% {
+        opacity: 0.5;
+        transform: scale(0.9);
+        -webkit-transform: scale(0.9);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+        -webkit-transform: scale(1.2);
     }
 }
 
 .logo:active {
     transform: scale(0.95);
+    -webkit-transform: scale(0.95);
     filter: drop-shadow(0 2px 8px rgba(255, 69, 180, 0.9));
+    -webkit-filter: drop-shadow(0 2px 8px rgba(255, 69, 180, 0.9));
 }
 
 @keyframes bounceClick {
     0% {
         transform: scale(1);
+        -webkit-transform: scale(1);
     }
 
     50% {
         transform: scale(0.9);
+        -webkit-transform: scale(0.9);
     }
 
     100% {
         transform: scale(1);
+        -webkit-transform: scale(1);
+    }
+}
+
+@-webkit-keyframes bounceClick {
+    0% {
+        transform: scale(1);
+        -webkit-transform: scale(1);
+    }
+
+    50% {
+        transform: scale(0.9);
+        -webkit-transform: scale(0.9);
+    }
+
+    100% {
+        transform: scale(1);
+        -webkit-transform: scale(1);
     }
 }
 
@@ -979,8 +1248,10 @@ body {
     -webkit-mask-size: contain;
     mask-size: contain;
     animation: sparkle 2.5s ease-in-out infinite;
+    -webkit-animation: sparkle 2.5s ease-in-out infinite;
     pointer-events: none;
     filter: drop-shadow(0 0 8px rgba(255, 105, 180, 0.8));
+    -webkit-filter: drop-shadow(0 0 8px rgba(255, 105, 180, 0.8));
 }
 
 @keyframes sparkle {
@@ -989,11 +1260,29 @@ body {
     100% {
         opacity: 0;
         transform: scale(0) rotate(0deg);
+        -webkit-transform: scale(0) rotate(0deg);
     }
 
     50% {
         opacity: 1;
         transform: scale(1.2) rotate(180deg);
+        -webkit-transform: scale(1.2) rotate(180deg);
+    }
+}
+
+@-webkit-keyframes sparkle {
+
+    0%,
+    100% {
+        opacity: 0;
+        transform: scale(0) rotate(0deg);
+        -webkit-transform: scale(0) rotate(0deg);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.2) rotate(180deg);
+        -webkit-transform: scale(1.2) rotate(180deg);
     }
 }
 
@@ -1006,7 +1295,6 @@ body {
 
     .logo {
         width: 100px;
-        /* Más grande en tablets */
     }
 
     .logo-container::after {
@@ -1026,7 +1314,6 @@ body {
 
     .logo {
         width: 90px;
-        /* Mucho más grande que antes (era 50px) */
     }
 
     .logo-container::after {
@@ -1060,13 +1347,13 @@ body {
 @media (hover: none) and (pointer: coarse) {
     .logo:active {
         animation: bounceClick 0.3s ease;
+        -webkit-animation: bounceClick 0.3s ease;
     }
 
     .logo-container a::before {
         content: '';
         position: absolute;
         inset: -15px;
-        /* Área táctil más grande */
         z-index: -1;
     }
 }
@@ -1085,26 +1372,63 @@ body {
     90%,
     100% {
         transform: scale(1);
+        -webkit-transform: scale(1);
     }
 
     92% {
         transform: scale(1.15) rotate(10deg);
+        -webkit-transform: scale(1.15) rotate(10deg);
     }
 
     94% {
         transform: scale(1.1) rotate(-10deg);
+        -webkit-transform: scale(1.1) rotate(-10deg);
     }
 
     96% {
         transform: scale(1.15) rotate(10deg);
+        -webkit-transform: scale(1.15) rotate(10deg);
     }
 
     98% {
         transform: scale(1.1) rotate(-10deg);
+        -webkit-transform: scale(1.1) rotate(-10deg);
+    }
+}
+
+@-webkit-keyframes superAttention {
+
+    0%,
+    90%,
+    100% {
+        transform: scale(1);
+        -webkit-transform: scale(1);
+    }
+
+    92% {
+        transform: scale(1.15) rotate(10deg);
+        -webkit-transform: scale(1.15) rotate(10deg);
+    }
+
+    94% {
+        transform: scale(1.1) rotate(-10deg);
+        -webkit-transform: scale(1.1) rotate(-10deg);
+    }
+
+    96% {
+        transform: scale(1.15) rotate(10deg);
+        -webkit-transform: scale(1.15) rotate(10deg);
+    }
+
+    98% {
+        transform: scale(1.1) rotate(-10deg);
+        -webkit-transform: scale(1.1) rotate(-10deg);
     }
 }
 
 .logo-container.super-attention .logo {
     animation: logoAttention 3s ease-in-out infinite,
+        superAttention 5s ease-in-out infinite 10s;
+    -webkit-animation: logoAttention 3s ease-in-out infinite,
         superAttention 5s ease-in-out infinite 10s;
 }

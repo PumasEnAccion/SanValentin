@@ -65,27 +65,141 @@ const audio = document.querySelector('audio');
 const hint = document.getElementById("tapHint");
 const ground = document.querySelector('.ground');
 
-function start() {
+// Variable para controlar si ya se inició
+let started = false;
+let audioUnlocked = false;
+
+// Función para desbloquear audio en Android
+function unlockAudio() {
+  if (audioUnlocked || !audio) return;
+
+  // Crear un AudioContext (necesario para Android)
+  const AudioContext = window.AudioContext || window.webkitAudioContext;
+  if (AudioContext) {
+    const audioContext = new AudioContext();
+    audioContext.resume();
+  }
+
+  // Pre-cargar el audio
+  audio.load();
   audio.volume = 0.6;
-  audio.play();
 
-  hint.remove();
-
-  ground.style.transform = 'scale(1.5)';
-  ground.style.animationPlayState = 'running';
-
-  startFlowers();
-  document.removeEventListener('click', start);
-  document.removeEventListener('touchstart', start);
+  // Intentar reproducir y pausar inmediatamente (desbloqueo)
+  const unlockPromise = audio.play();
+  if (unlockPromise !== undefined) {
+    unlockPromise
+      .then(() => {
+        audio.pause();
+        audio.currentTime = 0;
+        audioUnlocked = true;
+        console.log('✓ Audio desbloqueado');
+      })
+      .catch(e => {
+        console.log('⚠ Unlock failed:', e);
+      });
+  }
 }
 
-document.addEventListener('click', start);
-document.addEventListener('touchstart', start, { passive: false });
+function playAudio() {
+  if (!audio) return;
 
-// Segundo intento de activación de audio si el primero falla
-document.addEventListener('touchend', function audioRetry(e) {
-  if (audio && audio.paused && !hint) {
-    audio.play().catch(err => console.log('Retry failed:', err));
+  // Asegurar volumen
+  audio.volume = 0.6;
+  audio.currentTime = 0;
+
+  // Intentar reproducir
+  const playPromise = audio.play();
+
+  if (playPromise !== undefined) {
+    playPromise
+      .then(() => {
+        console.log('✓ Audio reproduciendo');
+      })
+      .catch(error => {
+        console.error('✗ Error al reproducir:', error);
+
+        // Reintento 1
+        setTimeout(() => {
+          audio.play()
+            .then(() => console.log('✓ Audio OK (intento 2)'))
+            .catch(e => {
+              console.error('✗ Intento 2 falló:', e);
+
+              // Reintento 2
+              setTimeout(() => {
+                audio.play()
+                  .then(() => console.log('✓ Audio OK (intento 3)'))
+                  .catch(err => console.error('✗ Intento 3 falló:', err));
+              }, 200);
+            });
+        }, 100);
+      });
+  }
+}
+
+function start(e) {
+  // Evitar múltiples ejecuciones
+  if (started) return;
+  started = true;
+
+  // Prevenir comportamiento por defecto
+  if (e) {
+    e.preventDefault();
+    e.stopPropagation();
+  }
+
+  // Desbloquear audio primero (crítico para Android)
+  unlockAudio();
+
+  // Remover hint
+  if (hint) {
+    hint.remove();
+  }
+
+  // Iniciar animación
+  ground.style.transform = 'scale(1.5)';
+  ground.style.animationPlayState = 'running';
+  startFlowers();
+
+  // Reproducir audio con delay para Android
+  setTimeout(() => {
+    playAudio();
+  }, 50);
+
+  // Limpiar listeners
+  document.removeEventListener('click', start);
+  document.removeEventListener('touchstart', start);
+  document.removeEventListener('touchend', startOnce);
+}
+
+// Función alternativa para touchend
+function startOnce(e) {
+  if (!started) {
+    start(e);
+  }
+}
+
+// Event listeners con máxima compatibilidad
+document.addEventListener('click', start, { passive: false });
+document.addEventListener('touchstart', start, { passive: false });
+document.addEventListener('touchend', startOnce, { passive: false });
+
+// Listener adicional para reintentar audio después
+document.addEventListener('touchend', function retryAudio() {
+  setTimeout(() => {
+    if (audio && audio.paused && started) {
+      console.log('⚠ Reintentando audio...');
+      playAudio();
+    }
+  }, 500);
+}, { once: true });
+
+// Pre-desbloqueo en primer toque (Android)
+let firstTouch = true;
+document.addEventListener('touchstart', function preUnlock() {
+  if (firstTouch && !started) {
+    firstTouch = false;
+    unlockAudio();
   }
 }, { once: true, passive: false });
 
@@ -106,14 +220,28 @@ function updateViewportHeight() {
   document.documentElement.style.setProperty('--vh', `${vh}px`);
 }
 
-// Actualizar altura al cargar, redimensionar o rotar
 updateViewportHeight();
 window.addEventListener('resize', updateViewportHeight);
 window.addEventListener('orientationchange', updateViewportHeight);
 
-// Prevenir scroll accidental en móviles durante la interacción con tapHint
+// Prevenir scroll accidental en móviles
 if (hint) {
   hint.addEventListener('touchmove', function (e) {
     e.preventDefault();
   }, { passive: false });
+}
+
+// Debug: Log cuando el audio esté listo
+if (audio) {
+  audio.addEventListener('canplaythrough', function () {
+    console.log('✓ Audio cargado y listo');
+  }, { once: true });
+
+  audio.addEventListener('playing', function () {
+    console.log('✓ Audio está sonando');
+  });
+
+  audio.addEventListener('error', function (e) {
+    console.error('✗ Error en el audio:', e);
+  });
 }
